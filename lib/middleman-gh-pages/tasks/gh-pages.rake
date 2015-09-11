@@ -17,8 +17,12 @@ def branch_name
   ENV.fetch("BRANCH_NAME", "gh-pages")
 end
 
+def build_dir
+  ENV.fetch("BUILD_DIR", "build")
+end
+
 PROJECT_ROOT = `git rev-parse --show-toplevel`.strip
-BUILD_DIR    = File.join(PROJECT_ROOT, "build")
+BUILD_DIR    = File.join(PROJECT_ROOT, build_dir)
 GH_PAGES_REF = File.join(BUILD_DIR, ".git/refs/remotes/#{remote_name}/#{branch_name}")
 
 directory BUILD_DIR
